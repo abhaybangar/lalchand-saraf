@@ -18,7 +18,6 @@ import {
 } from "lucide-react";
 
 export default function Navbar({ 
-  onOpenCalculator, 
   onOpenAppointment, 
   onOpenWishlist, 
   wishlistCount = 0,
@@ -42,34 +41,23 @@ export default function Navbar({
 
   return (
     <header className="sticky top-0 z-40 bg-[#FCFAF6]/95 backdrop-blur-md border-b border-[#EAE2D0] shadow-sm transition-all">
-      {/* Top Luxury Live Gold Rate Ticker */}
+      {/* Top Luxury Announcement Bar */}
       <div className="bg-[#0A0E17] text-[#EDE4D4] text-xs py-2 px-4 border-b border-[#D4AF37]/30">
         <div className="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-3">
-          <div className="flex items-center gap-2.5 overflow-x-auto whitespace-nowrap scrollbar-none">
+          <div className="flex items-center gap-3 overflow-x-auto whitespace-nowrap scrollbar-none text-[11px]">
             <span className="inline-flex items-center gap-1.5 bg-gradient-to-r from-[#DFBA54]/25 to-[#AA771C]/25 text-[#F3E5AB] font-bold px-2.5 py-0.5 rounded-full text-[10px] uppercase tracking-widest border border-[#DFBA54]/40 shadow-sm">
-              <Sparkles className="w-3 h-3 text-[#DFBA54] animate-spin" style={{ animationDuration: '8s' }} /> Live Rates
+              <Sparkles className="w-3 h-3 text-[#DFBA54]" /> Since 1994
             </span>
-            <span className="text-gray-300">
-              24K Pure: <strong className="text-white font-bold">₹{LIVE_RATES.gold24k.toLocaleString()}/g</strong>
+            <span className="text-[#F3E5AB] font-medium flex items-center gap-1">
+              <ShieldCheck className="w-3.5 h-3.5 text-[#DFBA54]" /> 100% BIS Hallmarked Pure Gold & Certified Diamonds
             </span>
-            <span className="text-gray-600">•</span>
-            <span className="text-gray-300">
-              22K (916): <strong className="text-[#F3E5AB] font-bold">₹{LIVE_RATES.gold22k.toLocaleString()}/g</strong>
-            </span>
-            <span className="text-gray-600">•</span>
-            <span className="text-gray-300">
-              18K Diamond: <strong className="text-white font-bold">₹{LIVE_RATES.gold18k.toLocaleString()}/g</strong>
-            </span>
-            <span className="text-gray-600">•</span>
-            <span className="text-gray-300">
-              Silver 999: <strong className="text-white font-bold">₹{LIVE_RATES.silver999}/g</strong>
+            <span className="text-gray-600 hidden sm:inline">•</span>
+            <span className="text-gray-300 hidden sm:inline flex items-center gap-1">
+              <MapPin className="w-3 h-3 text-[#DFBA54]" /> Flagship Store: Ratnagiri, Maharashtra
             </span>
           </div>
 
           <div className="hidden md:flex items-center gap-5 text-[11px] text-gray-300 font-medium">
-            <span className="flex items-center gap-1.5 text-[#DFBA54]">
-              <ShieldCheck className="w-3.5 h-3.5" /> 100% BIS Hallmarked Purity
-            </span>
             <span className="flex items-center gap-1.5 text-gray-400">
               <Clock className="w-3.5 h-3.5 text-[#DFBA54]" /> {STORE_INFO.timing}
             </span>
@@ -199,16 +187,6 @@ export default function Navbar({
               )}
             </div>
 
-            {/* Gold Rate Calculator Button */}
-            <button
-              onClick={onOpenCalculator}
-              className="hidden sm:flex items-center gap-1.5 text-xs font-bold text-[#8C6B1C] bg-[#FFF8E7] hover:bg-[#F8EED4] px-3.5 py-2 rounded-full border border-[#DFBA54]/60 transition shadow-xs"
-              title="Live Gold Rate Calculator"
-            >
-              <Calculator className="w-3.5 h-3.5 text-[#B38728]" />
-              <span className="hidden md:inline">Rate Calc</span>
-            </button>
-
             {/* Wishlist Button with Counter */}
             <button
               onClick={onOpenWishlist}
@@ -234,7 +212,7 @@ export default function Navbar({
 
             {/* WhatsApp Quick CTA */}
             <a
-              href={`https://wa.me/${STORE_INFO.whatsapp}?text=${encodeURIComponent("Hello J. Lalchand Saraf Jewellers, I would like to inquire about your jewellery designs and today's gold rate.")}`}
+              href={`https://wa.me/${STORE_INFO.whatsapp}?text=${encodeURIComponent("Hello J. Lalchand Saraf Jewellers, I would like to inquire about your jewellery designs.")}`}
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-1.5 text-xs font-bold px-4 py-2 rounded-full gold-btn shadow-md"
@@ -297,12 +275,6 @@ export default function Navbar({
           </div>
 
           <div className="pt-2 flex flex-col gap-2">
-            <button
-              onClick={() => { setMobileMenuOpen(false); onOpenCalculator(); }}
-              className="w-full flex items-center justify-center gap-2 py-2.5 rounded-lg bg-[#F7F2E7] text-[#8B6508] text-xs font-bold border border-[#DFBA54]"
-            >
-              <Calculator className="w-4 h-4" /> Live Gold Rate Calculator
-            </button>
             <button
               onClick={() => { setMobileMenuOpen(false); onOpenAppointment(); }}
               className="w-full flex items-center justify-center gap-2 py-2.5 rounded-lg bg-[#1C1917] text-[#F3E5AB] text-xs font-bold"

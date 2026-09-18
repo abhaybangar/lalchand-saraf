@@ -12,7 +12,7 @@ import {
   Clock
 } from "lucide-react";
 
-export default function TrustHeritageSection({ onOpenCalculator }) {
+export default function TrustHeritageSection({ onOpenAppointment }) {
   const pillars = [
     {
       icon: ShieldCheck,
@@ -99,10 +99,10 @@ export default function TrustHeritageSection({ onOpenCalculator }) {
           </div>
 
           <button
-            onClick={onOpenCalculator}
+            onClick={onOpenAppointment}
             className="gold-btn px-6 py-3 rounded-full text-xs font-bold uppercase tracking-wider whitespace-nowrap shadow-lg"
           >
-            Calculate Gold Price Now
+            Book VIP Consultation
           </button>
         </div>
       </div>

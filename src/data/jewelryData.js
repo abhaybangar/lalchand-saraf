@@ -392,7 +392,7 @@ export const HERO_SLIDES = [
     title: "Timeless Kokan Craftsmanship",
     subtitle: "Experience traditional Maharashtrian Kolhapuri Saaj, Thushi, and certified natural diamond jewellery with 30+ years of trust.",
     cta1: "EXPLORE BRIDAL",
-    cta2: "CHECK TODAY'S GOLD RATE",
+    cta2: "BOOK AN APPOINTMENT",
     bgImage: "/hero_diamonds.webp",
     badge: "Rated 4.9★ by 1,600+ Families"
   }

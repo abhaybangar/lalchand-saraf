@@ -14,7 +14,6 @@ import LuxuryFooter from "../components/LuxuryFooter";
 
 // Modals
 import ProductQuickViewModal from "../components/ProductQuickViewModal";
-import GoldRateCalculatorModal from "../components/GoldRateCalculatorModal";
 import BookAppointmentModal from "../components/BookAppointmentModal";
 import DirectionsMapModal from "../components/DirectionsMapModal";
 import WishlistDrawer from "../components/WishlistDrawer";
@@ -26,7 +25,6 @@ export default function Home() {
   // State management
   const [wishlist, setWishlist] = useState([]);
   const [selectedProduct, setSelectedProduct] = useState(null);
-  const [isCalculatorOpen, setIsCalculatorOpen] = useState(false);
   const [isAppointmentOpen, setIsAppointmentOpen] = useState(false);
   const [isDirectionsOpen, setIsDirectionsOpen] = useState(false);
   const [isWishlistOpen, setIsWishlistOpen] = useState(false);
@@ -83,9 +81,8 @@ export default function Home() {
 
   return (
     <main className="min-h-screen flex flex-col bg-[#FBF9F5] text-[#1E1E1E]">
-      {/* 1. Luxury Navbar with Live Rate ticker & search */}
+      {/* 1. Luxury Navbar with Announcement & search */}
       <Navbar
-        onOpenCalculator={() => setIsCalculatorOpen(true)}
         onOpenAppointment={() => setIsAppointmentOpen(true)}
         onOpenWishlist={() => setIsWishlistOpen(true)}
         wishlistCount={wishlist.length}
@@ -115,7 +112,7 @@ export default function Home() {
         onFilterSelect={handleCuratedFilterSelect}
       />
 
-      {/* 6. Product Catalog with Left Sidebar Filters & Live Price Breakdown */}
+      {/* 6. Product Catalog with Left Sidebar Filters */}
       <ProductCatalog
         selectedCategoryFilter={selectedCategoryFilter}
         setSelectedCategoryFilter={setSelectedCategoryFilter}
@@ -132,7 +129,7 @@ export default function Home() {
 
       {/* 7. Trust & Heritage Pillars */}
       <TrustHeritageSection
-        onOpenCalculator={() => setIsCalculatorOpen(true)}
+        onOpenAppointment={() => setIsAppointmentOpen(true)}
       />
 
       {/* 8. Google Reviews Showcase (4.9 Rating, 1,607 Reviews, Gemini AI Summary) */}
@@ -143,22 +140,12 @@ export default function Home() {
 
       {/* 10. Luxury Footer */}
       <LuxuryFooter
-        onOpenCalculator={() => setIsCalculatorOpen(true)}
         onOpenAppointment={() => setIsAppointmentOpen(true)}
         onOpenDirections={() => setIsDirectionsOpen(true)}
       />
 
-      {/* Floating Action Buttons (WhatsApp & Quick Call) */}
+      {/* Floating Action Button (WhatsApp) */}
       <div className="fixed bottom-6 right-6 z-40 flex flex-col items-end gap-3">
-        {/* Quick Rate Calc floating button */}
-        <button
-          onClick={() => setIsCalculatorOpen(true)}
-          className="hidden sm:flex items-center gap-2 bg-[#0D1624] text-[#F3E5AB] border border-[#DFBA54]/60 px-4 py-2.5 rounded-full shadow-2xl hover:bg-[#1A283F] transition-all text-xs font-bold uppercase tracking-wider"
-        >
-          <Sparkles className="w-3.5 h-3.5 text-[#DFBA54]" />
-          <span>Live Gold Calc</span>
-        </button>
-
         {/* WhatsApp Floating Chat */}
         <a
           href={`https://wa.me/${STORE_INFO.whatsapp}?text=${encodeURIComponent("Hello J. Lalchand Saraf Jewellers Ratnagiri, I would like to make an enquiry.")}`}
@@ -180,11 +167,6 @@ export default function Home() {
           onToggleWishlist={handleToggleWishlist}
         />
       )}
-
-      <GoldRateCalculatorModal
-        isOpen={isCalculatorOpen}
-        onClose={() => setIsCalculatorOpen(false)}
-      />
 
       <BookAppointmentModal
         isOpen={isAppointmentOpen}

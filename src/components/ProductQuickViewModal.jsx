@@ -23,19 +23,7 @@ export default function ProductQuickViewModal({
 }) {
   if (!product) return null;
 
-  // Calculate live breakdown
-  const ratePerGram = product.karat === "24KT" 
-    ? LIVE_RATES.gold24k 
-    : product.karat === "22KT" 
-      ? LIVE_RATES.gold22k 
-      : LIVE_RATES.gold18k;
-
-  const rawGoldValue = Math.round(product.netWeight * ratePerGram);
-  const approxMaking = Math.round(rawGoldValue * (parseFloat(product.makingChargePercent) / 100));
-  const approxGst = Math.round((rawGoldValue + approxMaking) * 0.03);
-  const calculatedTotal = rawGoldValue + approxMaking + approxGst;
-
-  const whatsappMsg = `Hello J. Lalchand Saraf, I am interested in ordering/viewing "${product.name}" (${product.karat}, Net Weight: ${product.netWeight}g, Approx: ₹${calculatedTotal.toLocaleString()}). Please confirm availability at your Ratnagiri store.`;
+  const whatsappMsg = `Hello J. Lalchand Saraf, I am interested in ordering/viewing "${product.name}" (${product.karat}, Net Weight: ${product.netWeight}g, Approx: ₹${product.estimatedPrice.toLocaleString()}). Please confirm availability at your Ratnagiri store.`;
   const whatsappUrl = `https://wa.me/${STORE_INFO.whatsapp}?text=${encodeURIComponent(whatsappMsg)}`;
 
   return (
@@ -67,7 +55,7 @@ export default function ProductQuickViewModal({
             </div>
           </div>
 
-          {/* Right Column: Specs & Transparent Price Breakdown */}
+          {/* Right Column: Specs & Valuation */}
           <div className="p-6 sm:p-8 flex flex-col justify-between space-y-6 max-h-[80vh] overflow-y-auto">
             <div className="space-y-4">
               <div>
@@ -87,7 +75,7 @@ export default function ProductQuickViewModal({
               </p>
 
               {/* Weight & Purity Grid */}
-              <div className="grid grid-cols-2 gap-2.5 p-3 rounded-2xl bg-[#FBF9F5] border border-[#ECE5D8] text-xs">
+              <div className="grid grid-cols-2 gap-2.5 p-3.5 rounded-2xl bg-[#FBF9F5] border border-[#ECE5D8] text-xs">
                 <div>
                   <span className="text-gray-400 block text-[10px] uppercase font-bold">Gross Weight</span>
                   <span className="font-bold text-gray-900">{product.grossWeight} Grams</span>
@@ -103,8 +91,8 @@ export default function ProductQuickViewModal({
                   </div>
                 )}
                 <div>
-                  <span className="text-gray-400 block text-[10px] uppercase font-bold">Today's Gold Rate</span>
-                  <span className="font-bold text-gray-900">₹{ratePerGram.toLocaleString()}/g</span>
+                  <span className="text-gray-400 block text-[10px] uppercase font-bold">Purity Guarantee</span>
+                  <span className="font-bold text-gray-900">{product.purity}</span>
                 </div>
                 <div>
                   <span className="text-gray-400 block text-[10px] uppercase font-bold">Making Charges</span>
@@ -115,30 +103,26 @@ export default function ProductQuickViewModal({
               {/* Transparent Price Estimation Breakdown */}
               <div className="p-4 rounded-2xl bg-[#FFF9E6] border border-[#DFBA54]/40 space-y-2 text-xs">
                 <div className="font-bold uppercase tracking-wider text-[#785912] flex items-center gap-1">
-                  <Sparkles className="w-3.5 h-3.5 text-[#DFBA54]" /> Transparent Price Estimation
+                  <Sparkles className="w-3.5 h-3.5 text-[#DFBA54]" /> Transparent Store Estimation
                 </div>
                 <div className="space-y-1 text-gray-700">
                   <div className="flex justify-between">
-                    <span>Pure Gold Value ({product.netWeight}g × ₹{ratePerGram})</span>
-                    <span className="font-medium">₹{rawGoldValue.toLocaleString()}</span>
+                    <span>Authenticity Standard</span>
+                    <span className="font-medium">100% BIS Hallmarked with HUID</span>
                   </div>
                   <div className="flex justify-between">
-                    <span>Making Charge ({product.makingChargePercent})</span>
-                    <span className="font-medium">₹{approxMaking.toLocaleString()}</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span>GST (3%)</span>
-                    <span className="font-medium">₹{approxGst.toLocaleString()}</span>
+                    <span>Making Charge</span>
+                    <span className="font-medium text-emerald-700">{product.makingChargePercent}</span>
                   </div>
                   <div className="pt-2 border-t border-[#DFBA54]/30 flex justify-between items-baseline text-sm">
-                    <span className="font-bold text-gray-900">Estimated Total Value:</span>
+                    <span className="font-bold text-gray-900">Approximate Value:</span>
                     <span className="font-serif-luxury text-xl font-bold text-[#8C6B1C]">
-                      ₹{calculatedTotal.toLocaleString()}*
+                      ₹{product.estimatedPrice.toLocaleString()}*
                     </span>
                   </div>
                 </div>
                 <p className="text-[10px] text-gray-500 italic mt-1">
-                  *Final price is calculated on the exact electronic weighing machine at our Ratnagiri counter as per real-time market gold rate.
+                  *Final price is confirmed on the exact electronic weighing machine at our Ratnagiri counter.
                 </p>
               </div>
 

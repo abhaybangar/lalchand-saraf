@@ -25,7 +25,7 @@ function InstagramIcon({ className = "w-4 h-4" }) {
   );
 }
 
-export default function LuxuryFooter({ onOpenCalculator, onOpenAppointment, onOpenDirections }) {
+export default function LuxuryFooter({ onOpenAppointment, onOpenDirections }) {
   const [email, setEmail] = useState("");
   const [subscribed, setSubscribed] = useState(false);
 
@@ -122,8 +122,8 @@ export default function LuxuryFooter({ onOpenCalculator, onOpenAppointment, onOp
                 </a>
               </li>
               <li>
-                <button onClick={onOpenCalculator} className="hover:text-[#DFBA54] transition text-left">
-                  Live Gold Rate Calc
+                <button onClick={onOpenAppointment} className="hover:text-[#DFBA54] transition text-left">
+                  Book In-Store Visit
                 </button>
               </li>
             </ul>
